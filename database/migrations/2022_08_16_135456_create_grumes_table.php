@@ -17,9 +17,8 @@ return new class extends Migration
             $table->integer('number')->unique();
             $table->double('length', 6, 2);
             $table->double('diameter', 6, 2);
-            $table->double('volume', 6, 2)->storedAs('diameter*diameter*length*0.785/10000');
             $table->string('container_number')->nullable();
-            $table->foreign('container_number')->references('number')->on('containers')->cascadeOnDelete();
+            $table->foreign('container_number')->references('number')->on('containers')->nullOnDelete();
             $table->timestamps();
         });
     }

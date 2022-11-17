@@ -1,7 +1,8 @@
 <template>
-    <router-link class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
-        @click="homeLayoutStore.toggleSideBar()" :class="[$route.name === props.label ? activeClass : inactiveClass]"
+    <router-link class="router-link relative flex items-center px-6 py-2 mt-4 duration-200 text-white"
+        @click="homeLayoutStore.toggleSideBar()"
         :to="{name:props.label}">
+        <div class="absolute left-0 left-border h-full"></div>
         <slot name="icon" />
         <span class="mx-4">{{ props.label }}</span>
     </router-link>
@@ -27,3 +28,16 @@ const inactiveClass = ref(
     "border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100"
 );
 </script>
+<style scoped>
+.router-link:hover .left-border{
+    width:6px;
+    background:white;
+}
+.router-link-active{
+    background:rgba(0,0,0,0.5);
+}
+.router-link-active .left-border{
+    width:6px;
+    background:white;
+}
+</style>

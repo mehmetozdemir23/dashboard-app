@@ -20,22 +20,22 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        // $user = User::create([
-        //     'id'=>1,
-        //     'username'=>'mehmetozdemir',
-        //     'email'=>'m.ozd23@gmail.com',
-        //     'password'=>Hash::make('blablabla'),
-        // ]);
+        $user = User::create([
+            'id' => 1,
+            'name' => 'mehmetozdemir',
+            'email' => 'm.ozd23@gmail.com',
+            'password' => Hash::make('blablabla'),
+        ]);
 
-        // $c1 = Container::factory()->create();
-        // Grume::factory(50)->create(['container_number'=>$c1->number]);
+        $c1 = Container::factory()->create();
+        Grume::factory(50)->create(['container_number' => $c1->number]);
 
-        // $c2 = Container::factory()->create();
-        // Grume::factory(50)->create(['container_number'=>$c2->number]);
-            for ($i=1; $i < 20; $i++) {
-                # code...
-                Grume::factory()->create(['number'=>$i*100]);
-            }
+        $c2 = Container::factory()->create();
+        Grume::factory(50)->create(['container_number' => $c2->number]);
+        // for ($i=1; $i < 20; $i++) {
+        //     # code...
+        //     Grume::factory()->create(['number'=>$i*100]);
+        // }
 
 
         // \App\Models\User::factory()->create([

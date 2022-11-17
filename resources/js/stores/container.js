@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
 import axiosClient from "../axios";
-import { Grume } from "../models/Grume";
+import { Container } from "../models/Container";
 
-export const useGrumeStore = defineStore('grume', {
+export const useContainerStore = defineStore('container', {
     state: () => ({
         records: [],
         totalRecords: 0,
@@ -31,15 +31,16 @@ export const useGrumeStore = defineStore('grume', {
     },
     actions: {
         init() {
-            if (!Grume.store)
-                Grume.store = this
+            if (!Container.store)
+                Container.store = this
         },
         addFilter(filter) {
             this.filters.set(filter.column, { min: filter.min, max: filter.max })
             this.get()
         },
-        deleteFilter(filter) {
-            this.filters.delete(filter.column)
+        deleteFilter(column) {
+            console.log(column)
+            this.filters.delete(column)
             this.get()
         },
         setSort(sort) {
@@ -65,7 +66,7 @@ export const useGrumeStore = defineStore('grume', {
         async get() {
             try {
 
-                const response = await axiosClient.post('/grumes', {
+                const response = await axiosClient.post('/containers', {
                     filters: Object.fromEntries(this.filters),
                     sort: this.sort,
                     paginate: {
@@ -80,18 +81,18 @@ export const useGrumeStore = defineStore('grume', {
                 console.log(error)
             }
         },
-        async create(record) {
+        async show(record){
             try {
-                const response = await axiosClient.post('/grumes/new', record)
-                this.get()
+                const response = await axiosClient.get(`/containers/${record}`)
                 return response.data
             } catch (error) {
                 console.log(error)
             }
         },
-        async show(record){
+        async create(record) {
             try {
-                const response = await axiosClient.get(`/grumes/${record}`)
+                const response = axiosClient.post('/containers/new', record)
+                this.get()
                 return response.data
             } catch (error) {
                 console.log(error)
@@ -99,7 +100,7 @@ export const useGrumeStore = defineStore('grume', {
         },
         async edit(record) {
             try {
-                const response = await axiosClient.put(`/grumes/${record.number}`, record)
+                const response = await axiosClient.put(`/containers/${record.number}`, record)
                 this.get()
                 return response.data
             } catch (error) {
@@ -108,7 +109,8 @@ export const useGrumeStore = defineStore('grume', {
         },
         async delete() {
             try {
-                const response = await axiosClient.post('/grumes/delete', { records: [...this.toBeDeleted] })
+                console.log(this.toBeDeleted);
+                const response = await axiosClient.post('/containers/delete', { records: [...this.toBeDeleted] })
                 this.toBeDeleted.clear()
                 this.get()
                 return response.data
@@ -118,7 +120,7 @@ export const useGrumeStore = defineStore('grume', {
         },
         async upload(file) {
             try {
-                const response = await axiosClient.post('/grumes/upload', { file: file }, {
+                const response = await axiosClient.post('/containers/upload', { file: file }, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -130,7 +132,10 @@ export const useGrumeStore = defineStore('grume', {
         },
         async download(records) {
             try {
-                const response = await axiosClient.post('/grumes/download', { records: records },
+                const data = records.size ? { records: [...records] } : {
+                    filters: Object.fromEntries(this.filters),
+                }
+                const response = await axiosClient.post('/containers/download', data,
                     { responseType: 'blob' })
                 return response
             } catch (error) {

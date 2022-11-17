@@ -1,15 +1,22 @@
-import { Grume } from "../models/Grume";
 import { createRouter, createWebHistory } from "vue-router";
 import LoginView from "../views/LoginView.vue"
 import RegisterView from "../views/RegisterView.vue"
-import ProfileView from "../views/ProfileView.vue"
-import TestView from "../views/TestView.vue"
-//import GrumeView from "../views/GrumeView.vue"
-import ContainerView from "../views/ContainerView.vue"
-import DataView from "../views/DataView.vue"
-
 import DashboardView from "../views/DashboardView.vue"
+import ProfileView from "../views/ProfileView.vue"
+
+import RecordLayout from "../components/RecordLayout.vue"
+import RecordIndex from "../components/RecordIndex.vue"
+import RecordDownload from "../components/RecordDownload.vue"
+
+import { Grume } from "../models/Grume";
+import { Container } from "../models/Container";
+import GrumeCreate from "../components/GrumeCreate.vue"
+import GrumeShow from "../components/GrumeShow.vue"
+import ContainerShow from "../components/ContainerShow.vue"
+import ContainerCreate from "../components/ContainerCreate.vue"
+
 import { useUserStore } from "../stores/user";
+
 const routes = [
     {
         name: 'root',
@@ -29,25 +36,86 @@ const routes = [
                 name: 'Dashboard',
                 path: 'dashboard',
                 component: DashboardView,
+                redirect: { name: 'grumes' },
                 children: [
                     {
                         name: 'grumes',
                         path: 'grumes',
-                        component: DataView,
+                        redirect: { name: 'grume-index' },
                         props: {
                             model: Grume
-                        }
+                        },
+                        component: RecordLayout,
+                        children: [
+                            {
+                                name: 'grume-index',
+                                path: '',
+                                component: RecordIndex,
+                            },
+                            {
+                                name: 'grume-create',
+                                path: 'create',
+                                component: GrumeCreate,
+                            },
+                            {
+                                name: 'grume-show',
+                                path: '/home/dashboard/grumes/:number',
+                                component: GrumeShow,
+                                props: route => ({
+                                    model: Grume,
+                                    record: route.params.number
+                                })
+
+                            },
+                            {
+                                name: 'grume-download',
+                                path: 'download',
+                                component: RecordDownload,
+                            },
+                        ]
 
                     }, {
                         name: 'containers',
                         path: 'containers',
-                        component: ContainerView
+                        props: {
+                            model: Container
+                        },
+                        redirect: { name: 'container-index' },
+                        component: RecordLayout,
+                        children: [
+                            {
+                                name: 'container-index',
+                                path: '',
+                                component: RecordIndex,
+                                props: {
+                                    model: Container
+                                }
+                            },
+                            {
+                                name: 'container-create',
+                                path: 'create',
+                                component: ContainerCreate,
+                                props: {
+                                    model: Container
+                                }
+                            },
+                            {
+                                name: 'container-show',
+                                path: '/home/dashboard/containers/:number',
+                                component: ContainerShow,
+                                props: route => ({
+                                    model: Container,
+                                    record: route.params.number
+                                })
+                            },
+                            {
+                                name: 'container-download',
+                                path: 'download',
+                                component: RecordDownload,
+                            },
+                        ]
                     }
                 ]
-            }, {
-                name: 'Test',
-                path: 'test',
-                component: TestView
             }, {
                 name: 'Profile',
                 path: 'profile',

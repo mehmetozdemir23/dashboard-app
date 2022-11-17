@@ -1,6 +1,5 @@
 <template>
     <home-layout>
-
         home view
         <form @submit.prevent="logout">
             <button>Logout</button>
@@ -14,6 +13,7 @@
 import axiosClient from '../axios';
 import { useUserStore } from '../stores/user';
 import HomeLayout from '../layouts/HomeLayout.vue';
+
 const userStore = useUserStore();
 
 async function getUserInfos(){

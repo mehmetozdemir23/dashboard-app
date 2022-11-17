@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Grume extends Model
@@ -14,8 +15,18 @@ class Grume extends Model
     protected $fillable = ['number', 'length', 'diameter', 'container_number'];
     protected $primaryKey = 'number';
     public $incrementing = false;
+    protected $appends = ['volume'];
 
+    protected function volume(): Attribute
+    {
+        return Attribute::make(get: function ($value, $attributes) {
+            $length = $attributes['length'];
+            $diameter =  $attributes['diameter'];
+            $volume = $length * $diameter * $diameter * 0.785 / 10000;
 
+            return (float) number_format($volume, 2);
+        });
+    }
 
     static function filter($filters)
     {

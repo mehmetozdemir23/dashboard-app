@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\GrumeController;
+use App\Http\Controllers\ContainerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,18 +19,34 @@ use App\Http\Controllers\GrumeController;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
+    Route::prefix('user')->group(function(){
+
+        Route::get('/', [UserController::class,'getUser']);
+        Route::post('/update', [UserController::class,'update']);
     });
-    Route::get('/grumes',[GrumeController::class,'index']);
-    Route::post('/grumes',[GrumeController::class,'index']);
-    Route::put('/grumes/{id}',[GrumeController::class,'update']);
 
-    Route::delete('/grumes/{id}',[GrumeController::class,'destroy']);
-
-    Route::post('/grumes/upload',[GrumeController::class,'upload']);
-    Route::post('/grumes/download',[GrumeController::class,'download']);
-
+    Route::prefix('grumes')->group(
+        function () {
+            Route::post('/', [GrumeController::class, 'index']);
+            Route::get('/{id}', [GrumeController::class, 'show']);
+            Route::post('/new',[GrumeController::class,'store']);
+            Route::put('/{id}', [GrumeController::class, 'update']);
+            Route::post('/delete', [GrumeController::class, 'destroy']);
+            Route::post('/upload', [GrumeController::class, 'upload']);
+            Route::post('/download', [GrumeController::class, 'download']);
+        }
+    );
+    Route::prefix('containers')->group(
+        function () {
+            Route::post('/', [ContainerController::class, 'index']);
+            Route::get('/{id}', [ContainerController::class, 'show']);
+            Route::post('/new',[ContainerController::class,'store']);
+            Route::put('/{id}', [ContainerController::class, 'update']);
+            Route::post('/delete', [ContainerController::class, 'destroy']);
+            Route::post('/upload', [ContainerController::class, 'upload']);
+            Route::post('/download', [ContainerController::class, 'download']);
+        }
+    );
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 

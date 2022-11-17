@@ -1,35 +1,34 @@
 <template>
-
-    <div class="mt-8 flex rounded">
+    <div class="flex">
         <button type="button" :disabled="isFirstPage"
             :class="{ 'cursor-not-allowed hover:bg-white text-slate-300': isFirstPage }"
-            class="px-3 py-2 ml-0 leading-tight text-indigo-700 bg-white border border-r-0 border-gray-200 rounded-l hover:bg-indigo-500 hover:text-white"
+            class="px-3 h-10 ml-0 leading-tight text-indigo-700 bg-white border-r border-gray-200 hover:bg-indigo-600 hover:text-white"
             @click.prevent="changePage(1)">
             <span class="hidden sm:block">First</span>
             <img src="/images/chevron-double-left.svg" alt="" class="w-4 sm:hidden">
         </button>
         <button type="button" :disabled="isFirstPage"
             :class="{ 'cursor-not-allowed hover:bg-white text-slate-300': isFirstPage }"
-            class="px-3 py-2 leading-tight text-indigo-700 bg-white border border-r-0 border-gray-200 hover:bg-indigo-500 hover:text-white"
+            class="px-3 h-10 leading-tight text-indigo-700 bg-white border-r border-gray-200 hover:bg-indigo-600 hover:text-white"
             @click.prevent="changePage(currentPage - 1)">
             <span class="hidden sm:block">Previous</span>
             <img src="/images/chevron-left.svg" alt="" class="w-4 sm:hidden">
         </button>
         <button type="button" v-for="index in pageRange" :key="index" @click.prevent="changePage(index)"
-            class="px-3 py-2 leading-tight border border-r-0 border-gray-200 hover:bg-indigo-500 hover:text-white"
+            class="w-10 h-10 leading-tight border-r border-gray-200 hover:bg-indigo-600 hover:text-white"
             :class="currentPageStyle(index)">
             <span>{{ index }}</span>
         </button>
         <button type="button" :disabled="isLastPage"
             :class="{ 'cursor-not-allowed hover:bg-white text-slate-300': isLastPage }"
-            class="px-3 py-2 leading-tight text-indigo-700 bg-white border border-r-0 border-gray-200 hover:bg-indigo-500 hover:text-white"
+            class="px-3 h-10 leading-tight text-indigo-700 bg-white border-r border-gray-200 hover:bg-indigo-600 hover:text-white"
             @click.prevent="changePage(currentPage + 1)">
             <span class="hidden sm:block">Next</span>
             <img src="/images/chevron-right.svg" alt="" class="w-4 sm:hidden">
         </button>
         <button type="button" :disabled="isLastPage"
             :class="{ 'cursor-not-allowed hover:bg-white text-slate-300': isLastPage }"
-            class="px-3 py-2 leading-tight text-indigo-700 bg-white border border-gray-200 rounded-r hover:bg-indigo-500 hover:text-white"
+            class="px-3 h-10 leading-tight text-indigo-700 bg-white rounded-r hover:bg-indigo-600 hover:text-white"
             @click.prevent="changePage(pageCount)">
             <span class="hidden sm:block">Last</span>
             <img src="/images/chevron-double-right.svg" alt="" class="w-4 sm:hidden">
@@ -94,7 +93,7 @@ function changePage(page) {
 
 function currentPageStyle(page) {
     if (currentPage.value === page) {
-        return 'bg-indigo-500 text-white'
+        return 'bg-indigo-600 text-white'
     }
     return 'text-indigo-700 bg-white'
 }
