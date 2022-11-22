@@ -44,7 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/{id}', [ContainerController::class, 'update']);
             Route::post('/delete', [ContainerController::class, 'destroy']);
             Route::post('/upload', [ContainerController::class, 'upload']);
-            Route::post('/download', [ContainerController::class, 'download']);
+            Route::get('/download/{id}', [ContainerController::class, 'download']);
         }
     );
     Route::post('/logout', [AuthController::class, 'logout']);

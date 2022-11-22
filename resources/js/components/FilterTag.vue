@@ -8,7 +8,7 @@
     </div>
 </template>
 <script setup>
-import { toRef } from 'vue';
+import { computed } from 'vue';
 const emit=defineEmits(['filterDeleted'])
 const props = defineProps({
     filter: {
@@ -16,7 +16,7 @@ const props = defineProps({
         required: true
     }
 })
-const filter = toRef(props,'filter')
+const filter = computed(()=>props.filter)
 function deleteFilter(){
     emit('filterDeleted',filter.value)
 }

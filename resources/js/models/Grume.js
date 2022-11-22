@@ -9,14 +9,22 @@ export class Grume {
         'volume',
         'container_number'
     ]
+    static filterableColumns = [
+        'number',
+        'length',
+        'diameter',
+        'volume',
+    ]
     static creatableColumns = [
         'number',
         'length',
-        'diameter'
+        'diameter',
+        'container_number'
     ]
     static editableColumns = [
         'length',
         'diameter',
+        'container_number'
     ]
     static fileExtension = 'xlsx'
     static filePrefix = 'grumes'

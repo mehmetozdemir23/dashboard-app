@@ -64,9 +64,7 @@
 </template>
 <script setup>
 import { computed, ref, onMounted, watch } from 'vue';
-import Modal from './Modal.vue';
 import Pagination from './Pagination.vue';
-import RecordEditInput from './RecordEditInput.vue';
 const emit = defineEmits(['sortedColumnChanged', 'recordEdited', 'recordSelected', 'recordUnselected'])
 const props = defineProps({
     model: {
@@ -79,7 +77,6 @@ const model = computed(() => props.model)
 const store = computed(() => model.value.store)
 const records = computed(() => store.value.getRecords)
 const columns = computed(() => model.value.columns)
-const editableColumns = computed(() => model.value.editableColumns)
 const sortedColumn = computed(() => store.value.getSort.column || columns[0])
 
 const currentPage = ref(1)
@@ -104,16 +101,6 @@ function setSortedColumn(index) {
     })
 }
 
-async function editRecord(record) {
-    isModalOpen.value = true
-    editingRecord.value = record
-}
-async function onRecordEdited(record) {
-    await store.value.edit(record)
-}
-function closeModal() {
-    isModalOpen.value = false
-}
 function selectRecord(record) {
     if (store.value.toBeDeleted.has(record)) {
         store.value.removeFromToBeDeleted(record)

@@ -130,12 +130,9 @@ export const useContainerStore = defineStore('container', {
                 console.log(error)
             }
         },
-        async download(records) {
+        async download(record) {
             try {
-                const data = records.size ? { records: [...records] } : {
-                    filters: Object.fromEntries(this.filters),
-                }
-                const response = await axiosClient.post('/containers/download', data,
+                const response = await axiosClient.get(`/containers/download/${record.number}`,
                     { responseType: 'blob' })
                 return response
             } catch (error) {

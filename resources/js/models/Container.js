@@ -6,7 +6,10 @@ export class Container {
         'number',
         'tare',
         'seal',
-
+    ]
+    static filterableColumns = [
+        'number',
+        'tare'
     ]
     static creatableColumns = [
         'number',

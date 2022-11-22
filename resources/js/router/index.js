@@ -56,6 +56,9 @@ const routes = [
                                 name: 'grume-create',
                                 path: 'create',
                                 component: GrumeCreate,
+                                props:route=>({
+                                    defaultContainer:route.query.defaultContainer
+                                })
                             },
                             {
                                 name: 'grume-show',
@@ -66,11 +69,6 @@ const routes = [
                                     record: route.params.number
                                 })
 
-                            },
-                            {
-                                name: 'grume-download',
-                                path: 'download',
-                                component: RecordDownload,
                             },
                         ]
 
@@ -107,11 +105,6 @@ const routes = [
                                     model: Container,
                                     record: route.params.number
                                 })
-                            },
-                            {
-                                name: 'container-download',
-                                path: 'download',
-                                component: RecordDownload,
                             },
                         ]
                     }

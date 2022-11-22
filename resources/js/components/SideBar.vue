@@ -8,7 +8,7 @@
             class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-indigo-700 lg:translate-x-0 lg:static lg:inset-0">
             <div class="flex items-center justify-center mt-8">
                 <div class="flex items-center">
-                    <img src="/images/shn-logo-white.svg" alt="" class="w-36">
+                    <img src="/images/personal-logo-white.svg" alt="" class="w-36">
                 </div>
             </div>
 

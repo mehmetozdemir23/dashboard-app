@@ -38,8 +38,8 @@ export const useGrumeStore = defineStore('grume', {
             this.filters.set(filter.column, { min: filter.min, max: filter.max })
             this.get()
         },
-        deleteFilter(filter) {
-            this.filters.delete(filter.column)
+        deleteFilter(column) {
+            this.filters.delete(column)
             this.get()
         },
         setSort(sort) {

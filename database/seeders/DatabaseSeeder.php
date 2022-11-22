@@ -19,12 +19,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $user = User::create([
             'id' => 1,
-            'name' => 'mehmetozdemir',
-            'email' => 'm.ozd23@gmail.com',
-            'password' => Hash::make('blablabla'),
+            'name' => 'user',
+            'email' => 'user@example.com',
+            'password' => Hash::make('password'),
         ]);
 
         $c1 = Container::factory()->create();
@@ -32,15 +31,6 @@ class DatabaseSeeder extends Seeder
 
         $c2 = Container::factory()->create();
         Grume::factory(50)->create(['container_number' => $c2->number]);
-        // for ($i=1; $i < 20; $i++) {
-        //     # code...
-        //     Grume::factory()->create(['number'=>$i*100]);
-        // }
 
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

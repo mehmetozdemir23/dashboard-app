@@ -10,9 +10,9 @@
                     <span class="text-sm text-left">{{ column }}</span>
                     <div class="relative">
 
-                        <input v-model="record[column]" :disabled="!(column in editableColumns)"
+                        <input v-model="record[column]" :disabled="!editableColumns.includes(column)"
                             class="pl-2 w-36 h-10 flex items-center justify-center pr-2 bg-white outline-none border-2 border-indigo-200 focus:border-indigo-800">
-                        <img v-if="!(column in editableColumns)" src="/images/lock.svg" alt="" class="absolute top-1/2 right-3 z-50 w-4 transform -translate-y-1/2">
+                        <img v-if="!editableColumns.includes(column)" src="/images/lock.svg" alt="" class="absolute top-1/2 right-3 z-50 w-4 transform -translate-y-1/2">
                     </div>
 
                 </div>
@@ -32,6 +32,7 @@
 </template>
 <script setup>
 import { computed, ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 const props = defineProps({
     model: {
         type: Function,
@@ -42,6 +43,7 @@ const props = defineProps({
         required: true
     }
 })
+const router = useRouter();
 const record = ref({})
 const model = computed(() => props.model)
 const store = computed(() => model.value.store)
@@ -55,5 +57,8 @@ onMounted(async () => {
 
 function edit(){
     store.value.edit(record.value);
+}
+function cancel(){
+    router.push({name:'grumes'})
 }
 </script>

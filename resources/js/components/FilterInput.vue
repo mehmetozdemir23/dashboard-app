@@ -2,7 +2,7 @@
     <div class="flex flex-col space-y-6">
         <ul v-if="filters.size" class="flex w-full overflow-x-scroll pb-4 border-b border-slate-300">
             <li v-for="[column, values] of filters" :key="column">
-                <filter-tag :filter="{ column: column, min: values.min, max: values.max }" @filter-deleted="onFilterDelete" />
+                <filter-tag :filter="{ column: column, min: values.min, max: values.max }" @filter-deleted="onFilterDelete(column)" />
             </li>
         </ul>
         <button type="button" class="relative w-max flex items-center" @click.prevent="isDropdownOpen = true">
@@ -56,7 +56,7 @@ const emit = defineEmits(['closed'])
 const isDropdownOpen = ref(false)
 const model = computed(()=>props.model)
 const store = computed(()=>model.value.store)
-const columns = computed(()=>model.value.columns)
+const columns = computed(()=>model.value.filterableColumns)
 const filters = computed(()=>store.value.getFilters)
 const filter = reactive({
     column: columns.value[0],
@@ -71,16 +71,16 @@ function selectColumn(index) {
 
 function addFilter() {
     const column = filter.column
-    const min = parseFloat(filter.min)
-    const max = parseFloat(filter.max)
-    if (column && min < max) {
+     filter.min = parseFloat(filter.min)
+    filter.max = parseFloat(filter.max)
+    if (column && filter.min < filter.max) {
         store.value.addFilter(filter)
     }
     close()
 }
 
-function onFilterDelete(){
-    store.value.deleteFilter(filter)
+function onFilterDelete(column){
+    store.value.deleteFilter(column)
 }
 function close() {
     emit('closed')

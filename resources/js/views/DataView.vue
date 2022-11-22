@@ -54,14 +54,6 @@
 
             </router-view>
 
-            <!-- <data-table :records="records" :columns="columns" :editableColumns="editableColumns"
-                :sortedColumn="sortedColumn" :selectedRecords="selectedRecords"
-                @sortedColumnChanged="onSortedColumnChange" @recordEdited="onRecordEdit"
-                @recordSelected="onRecordSelect" @recordUnselected="onRecordUnselect" />
-            <pagination :totalElements="totalRecords" :perPage="perPage" :currentPage="currentPage"
-                @page-changed="onPageChange" /> -->
-
-
         </div>
     </div>
 </template>

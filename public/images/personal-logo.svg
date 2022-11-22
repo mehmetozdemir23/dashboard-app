@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="68.791664mm"
+   height="31.75mm"
+   viewBox="0 0 68.791664 31.75"
+   version="1.1"
+   id="svg44873"
+   inkscape:version="1.2.1 (8a69933317, 2022-10-28, custom)"
+   sodipodi:docname="memo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview44875"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.87659933"
+     inkscape:cx="273.2149"
+     inkscape:cy="750.628"
+     inkscape:window-width="1366"
+     inkscape:window-height="665"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs44870" />
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-68.412363,-185.61865)">
+    <path
+       id="rect847"
+       style="fill:#000000;stroke-width:0.463336"
+       d="m 105.65195,185.61864 c -0.10955,0 -0.19792,0.0884 -0.19792,0.19792 v 31.35416 c 0,0.10956 0.0884,0.19792 0.19792,0.19792 h 31.35467 c 0.10956,0 0.19741,-0.0884 0.19741,-0.19792 v -31.35416 c 0,-0.10955 -0.0878,-0.19792 -0.19741,-0.19792 z m 5.22552,5.29167 h 20.90312 c 0.073,0 0.13177,0.0587 0.13177,0.13178 v 20.90311 c 0,0.073 -0.0587,0.13178 -0.13177,0.13178 h -20.90312 c -0.073,0 -0.13178,-0.0587 -0.13178,-0.13178 v -20.90311 c 0,-0.073 0.0587,-0.13178 0.13178,-0.13178 z"
+       inkscape:export-filename="../7ad2dcf/personal-logo.svg"
+       inkscape:export-xdpi="14.349"
+       inkscape:export-ydpi="14.349" />
+    <path
+       id="rect843"
+       style="fill:#000000;stroke-width:0.463336"
+       d="m 68.610283,185.61864 c -0.109553,0 -0.197921,0.0884 -0.197921,0.19792 v 31.35416 c 0,0.10956 0.08837,0.19792 0.197921,0.19792 h 5.093746 v -5.42344 -0.0904 -20.81268 c 0,-0.073 0.05874,-0.13178 0.131775,-0.13178 h 20.903117 c 0.07304,0 0.131774,0.0587 0.131774,0.13178 v 20.81268 0.0904 5.42344 h 5.094263 c 0.109552,0 0.197402,-0.0884 0.197402,-0.19792 v -31.35416 c 0,-0.10954 -0.0879,-0.19792 -0.197402,-0.19792 z"
+       inkscape:export-filename="../7ad2dcf/personal-logo-white.svg"
+       inkscape:export-xdpi="14.349"
+       inkscape:export-ydpi="14.349" />
+    <rect
+       style="fill:#000000;stroke-width:0.0772226"
+       id="rect1424"
+       width="5.2916665"
+       height="5.2916665"
+       x="118.6832"
+       y="198.84781"
+       ry="0.032958176" />
+  </g>
+</svg>

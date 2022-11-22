@@ -3,11 +3,6 @@
         <notification :messages="successMessage || errorMessages" :alertType="alertType" @closed="onNotificationClose" />
         <div class="mt-4">
             <div class="p-6 bg-white rounded-md shadow-md">
-                <!-- <ul v-if="errorMessages" class="py-2">
-                    <li v-for="error in errorMessages" class="text-red-500">
-                        {{ error[0] }}
-                    </li>
-                </ul> -->
                 <h2 class="text-lg font-semibold text-gray-700 capitalize">
                     Account settings
                 </h2>
@@ -41,12 +36,6 @@
                                 class="text-lg block w-full h-14 pl-2 mt-2 bg-slate-100 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
                                 v-model="user.password_confirmation" />
                         </label>
-                        <!-- <div>
-                            <label class="text-gray-700" for="passwordConfirmation">Password Confirmation</label>
-                            <input
-                                class="w-full mt-2 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
-                                type="password" v-model="user.confirm" />
-                        </div> -->
                     </div>
 
                     <div class="flex justify-end space-x-4 mt-12">
@@ -110,6 +99,5 @@ async function save() {
     const response = await userStore.updateUser(user)
     errors.value = response.error
     success.value = response.success
-    console.log(response)
 }
 </script>

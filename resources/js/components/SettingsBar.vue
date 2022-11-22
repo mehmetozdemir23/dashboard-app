@@ -13,18 +13,11 @@
                     <span class="text-sm">New</span>
                 </div>
             </router-link>
-            <router-link :to="{ name: model.name + '-download' }">
-                <div
-                    class="flex-shrink-0 min-w-max flex justify-center items-center space-x-2 px-2 sm:px-4 h-10 bg-white">
-                    <img src="/images/folder-arrow-down.svg" alt="" class="w-4 sm:w-5">
-                    <span class="text-sm">Download</span>
-                </div>
-            </router-link>
             <button type="button" @click.prevent="deleteRecord">
                 <div
                     class="flex-shrink-0 min-w-max flex justify-center items-center space-x-2 px-2 sm:px-4 h-10 bg-red-500">
                     <img src="/images/trash.svg" alt="" class="w-4 sm:w-5">
-                    <span class="text-sm text-white">Remove ({{ toBeDeleted.size }})</span>
+                    <span class="text-sm text-white">Delete ({{ toBeDeleted.size }})</span>
                 </div>
             </button>
         </div>
@@ -34,9 +27,14 @@
                 <img src="/images/filter.svg" alt="" class="w-4 sm:w-5">
                 <span class="text-sm">Filter</span>
             </button>
-            <input type="text" @input="search" :value="searchedNumber"
-                class="w-full sm:w-36 h-10 pl-2 text-sm outline-none focus:border-2 focus:border-indigo-600"
-                placeholder="Search by number">
+            <div class="relative">
+                <input type="text" @input="search" :value="searchedNumber"
+                    class="w-full sm:w-44 h-10 pl-2 text-sm outline-none focus:border-2 focus:border-indigo-600"
+                    placeholder="Search by number">
+                    <button @click.prevent="search('')" type="button" class="absolute right-2 top-1/2 -translate-y-1/2">
+                        <img v-if="searchedNumber" src="/images/x-mark.svg" alt="" class="w-5"/>
+                    </button>
+            </div>
         </div>
     </div>
 </template>
@@ -57,7 +55,7 @@ const toBeDeleted = computed(() => store.value.toBeDeleted)
 const searchedNumber = computed(() => store.value.getSearch.text);
 
 function search(event) {
-    const number = event.target.value
+    const number = event.target?.value ?? ''
     store.value.setSearch(number)
 }
 

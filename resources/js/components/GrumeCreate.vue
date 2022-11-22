@@ -27,22 +27,30 @@
     </div>
 </template>
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import {useRouter} from 'vue-router';
 import Notification from './Notification.vue';
 const props = defineProps({
     model: {
         type: Function,
         required: true
+    },
+    defaultContainer:{
+        type:String,
+        default:''
     }
+
 })
+const defaultContainer = computed(()=>props.defaultContainer)
 const model = computed(() => props.model)
 const store = computed(() => model.value.store)
 const columns = computed(() => model.value.creatableColumns)
 const record = ref(Object.fromEntries(columns.value.map(col => [col, null])))
-
 const errors = ref([])
 const router = useRouter()
+record.value['container_number'] = defaultContainer.value
+
+
 function checkErrors() {
     for (const column in record.value) {
         if (record.value[column] == null)
@@ -52,8 +60,15 @@ function checkErrors() {
 
 async function create() {
     checkErrors()
-    console.log(errors.value);
-    !errors.value.length && await store.value.create(record.value)
+    if(!errors.value.length){
+        await store.value.create(record.value)
+
+        if(record.value['container_number'])
+            router.go(-1)
+        else {
+            router.push({name:'containers'})
+        }
+    }
 }
 
 function onCloseNotification() {

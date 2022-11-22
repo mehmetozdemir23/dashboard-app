@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!-- <slot name="button" :onOpen="openModal" /> -->
         <div class="modal
          z-50 fixed w-full h-full top-0 left-0 flex items-center justify-center">
             <div @click="closeModal" class="absolute w-full h-full bg-gray-900 opacity-50 modal-overlay"></div>

@@ -17,9 +17,9 @@ import HomeLayout from '../layouts/HomeLayout.vue';
 const userStore = useUserStore();
 
 async function getUserInfos(){
-    const response = await axiosClient.get('/user');
+    await axiosClient.get('/user');
 }
 async function logout(){
-    const response = await userStore.logout()
+    await userStore.logout()
 }
 </script>

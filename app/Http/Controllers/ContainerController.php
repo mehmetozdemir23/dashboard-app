@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Grume;
 use App\Models\Container;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Resources\ContainerResource;
-use Illuminate\Validation\Rule;
 
 class ContainerController extends Controller
 {
     public function index(Request $request)
     {
+
         //search
         if ($request->search != null) {
             $query = Container::where('number', 'LIKE', $request->search . '%');
@@ -130,18 +128,11 @@ class ContainerController extends Controller
         }
     }
 
-    public function download(Request $request)
+    public function download($id)
     {
-        //download selected records
-        if ($request->records) {
-            $record_numbers = array_map(fn ($record) => $record['number'], $request->records);
-            $containers = Container::whereIn('number', $record_numbers)->get();
-        } else {
-            //download filtered records
-            $containers = Container::filter($request->filters)->get();
-        }
+       $container = Container::find($id);
 
-        $file = Container::createExcel($containers);
+        $file = Container::createExcel([$container]);
         return response()->download($file);
 
     }
